@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
-import { Box, Fab, Zoom, TextField } from '@mui/material';
+import {  Fab, Zoom } from '@mui/material';
 
 function CreateArea(props) {
 
@@ -37,20 +37,30 @@ function CreateArea(props) {
 
   return (
     <div>
-      <Box className= "create-note" component="form" onSubmit={submitNote} sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-        {isExpanded && <TextField name="title" value={note.title} onChange={handleChange} placeholder="Title" size="small" />}
-        <TextField
-          name="content"
-          value={note.content}
+     <form className="create-note">
+        {isExpanded ? (
+          <input
+            name="title"
+            onChange={handleChange}
+            value={note.title}
+            placeholder="Title"
+          />
+        ) : null}
+
+        <textarea
           onClick={expand}
+          name="content"
           onChange={handleChange}
+          value={note.content}
           placeholder="Take a note..."
-          multiline
-          minRows={isExpanded ? 3 : 1}
-          size="small"
+          rows={isExpanded ? "3" : "1"}
         />
-        <Zoom in={isExpanded}><Fab type="submit" sx={{ alignSelf: 'flex-end' }}><AddIcon/></Fab></Zoom>
-      </Box>
+        <Zoom in={isExpanded}>
+          <Fab onClick={submitNote}>
+            <AddIcon />
+          </Fab>
+        </Zoom>
+      </form>
       {isExpanded ? null : <div className="empty">Keeper is empty</div>}
     </div>
   );

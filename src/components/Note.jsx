@@ -8,10 +8,10 @@ function Note(props) {
   }
 
   return (
-    <Card className="note" sx={{ width: 320, m: 1 }}>
+    <Card className="note" sx={{ width: { xs: '100%', sm: '45%', md: '30%' }, m: 1, maxWidth: 320 }}>
       <CardContent>
-        <Typography variant="h6">{props.title}</Typography>
-        <Typography variant="body2">{props.content}</Typography>
+        <h1>{props.title}</h1>
+        <p>{props.content}</p>
         <IconButton onClick={handleClick}><DeleteIcon/></IconButton>
       </CardContent>
     </Card>
